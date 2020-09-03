@@ -5,6 +5,15 @@ import ApiContext from './ApiContext'
 
 class AddFolder extends React.Component {
   
+  constructor(props) {
+    super(props);
+    this.getValue = this.getValue.bind(this);
+  }
+
+
+
+
+
   static contextType = ApiContext
   
 
@@ -27,8 +36,10 @@ class AddFolder extends React.Component {
     })
     
   }
+  getValue = (val) => {
+    this.context.addFolderName(val)
+  }
 
-  
 
 
   render() {
@@ -42,13 +53,14 @@ class AddFolder extends React.Component {
           >New Folder Name:</label>
           <input
             id='new-Folder'
+            onChange={(e) => this.getValue(e.currentTarget)}
           >
 
           </input>
           <button
             className='Add Folder'
             type='button'
-            onClick={() => this.handleClickAddFolder('Orangeszz')}
+            onClick={(e) => this.handleClickAddFolder(this.props.newFolder)}
           >
             Add New Folder!
       </button>

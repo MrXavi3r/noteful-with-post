@@ -13,7 +13,8 @@ import './App.css';
 class App extends Component {
     state = {
         notes: [],
-        folders: []
+        folders: [],
+        newFolder:''
     };
 
     componentDidMount() {
@@ -49,6 +50,11 @@ class App extends Component {
         })
     }
 
+    getNewFolderValue = name => {
+        this.setState({
+            newFolder: name
+        })
+    }
 
     renderNavRoutes() {
         return (
@@ -88,8 +94,10 @@ class App extends Component {
         const value = {
             notes: this.state.notes,
             folders: this.state.folders,
+            newFolder: this.state.newFolder,
             deleteNote: this.handleDeleteNote,
-            addFolder: this.handleAddFolder
+            addFolder: this.handleAddFolder,
+            addFolderName:this.getNewFolderValue
 
         };
         return (
