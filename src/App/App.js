@@ -51,6 +51,12 @@ class App extends Component {
         })
     }
 
+    handleAddNote = note => {
+        this.setState({
+            notes: [...this.state.notes, note]
+        })
+    }
+
     // getNewFolderValue = name => {
     //     this.setState({
     //         newFolder: name
@@ -98,6 +104,7 @@ class App extends Component {
             newFolder: this.state.newFolder,
             deleteNote: this.handleDeleteNote,
             addFolder: this.handleAddFolder,
+            addNoteToState: this.handleAddNote
             // addFolderName:this.getNewFolderValue
 
         };
