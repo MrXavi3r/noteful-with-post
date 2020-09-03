@@ -9,6 +9,7 @@ import ApiContext from '../ApiContext';
 import config from '../config';
 import AddFolder from '../AddFolder'
 import AddNote from '../AddNote'
+import NotefulError from '../NotefulError'
 import './App.css';
 
 class App extends Component {
@@ -109,7 +110,8 @@ class App extends Component {
 
         };
         return (
-            <ApiContext.Provider value={value}>
+           <NotefulError>
+           <ApiContext.Provider value={value}>
                 <div className="App">
                     <nav className="App__nav">{this.renderNavRoutes()}</nav>
                     <header className="App__header">
@@ -124,6 +126,7 @@ class App extends Component {
                         {this.renderMainRoutes()}</main>
                 </div>
             </ApiContext.Provider>
+            </NotefulError>
         );
     }
 }
