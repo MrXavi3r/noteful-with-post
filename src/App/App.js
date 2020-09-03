@@ -58,11 +58,7 @@ class App extends Component {
         })
     }
 
-    // getNewFolderValue = name => {
-    //     this.setState({
-    //         newFolder: name
-    //     })
-    // }
+   
 
     renderNavRoutes() {
         return (
@@ -106,7 +102,7 @@ class App extends Component {
             deleteNote: this.handleDeleteNote,
             addFolder: this.handleAddFolder,
             addNoteToState: this.handleAddNote
-            // addFolderName:this.getNewFolderValue
+            
 
         };
         return (

@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CircleButton from '../CircleButton/CircleButton'
 import ApiContext from '../ApiContext'
 import { countNotesForFolder } from '../notes-helpers'
-import PropTypes from 'prop-types'
 import './NoteListNav.css'
 
 export default class NoteListNav extends React.Component {

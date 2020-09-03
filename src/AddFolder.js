@@ -1,7 +1,7 @@
 import React from 'react'
 import config from './config'
 import ApiContext from './ApiContext'
-import PropTypes from 'prop-types';
+import './add.css'
 
 class AddFolder extends React.Component {
   
@@ -94,20 +94,6 @@ class AddFolder extends React.Component {
 }
 
 
-AddFolder.propTypes = {
-  name: PropTypes.string.isRequired
-  // (props => {
-  //   const nameVal = props;
-  //   if(typeof prop != 'string') {
-  //     return new Error(`${nameVal} is required to be a string`);
-  //   } else if(nameVal.length < 3) {
-  //   return new Error(`${nameVal} is required to be more than 3 characters`);
-  // }
-  // }),
-
-
-
-}
 
 
 export default AddFolder
