@@ -7,7 +7,9 @@ class AddFolder extends React.Component {
   
   constructor(props) {
     super(props);
-    this.getValue = this.getValue.bind(this);
+    this.state =({
+      name:''
+    })
   }
 
 
@@ -37,13 +39,16 @@ class AddFolder extends React.Component {
     
   }
   getValue = (val) => {
-    this.context.addFolderName(val)
+    this.setState({
+      name:val
+    })
   }
 
 
 
   render() {
     //console.log(this.handleClickAddFolder('hi'))
+    console.log(this.state.name)
     return (
       <div>
 
@@ -53,14 +58,15 @@ class AddFolder extends React.Component {
           >New Folder Name:</label>
           <input
             id='new-Folder'
-            onChange={(e) => this.getValue(e.currentTarget)}
+            defaultValue='Hello'
+            onChange={(e) => this.getValue(e.target.value)}
           >
 
           </input>
           <button
             className='Add Folder'
             type='button'
-            onClick={(e) => this.handleClickAddFolder(this.props.newFolder)}
+            onClick={(e) => this.handleClickAddFolder(`${this.state.name}`)}
           >
             Add New Folder!
       </button>
