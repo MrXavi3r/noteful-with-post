@@ -14,7 +14,7 @@ class App extends Component {
     state = {
         notes: [],
         folders: [],
-        newFolder:''
+        //folderName:''
     };
 
     componentDidMount() {
@@ -50,11 +50,11 @@ class App extends Component {
         })
     }
 
-    getNewFolderValue = name => {
-        this.setState({
-            newFolder: name
-        })
-    }
+    // getNewFolderValue = name => {
+    //     this.setState({
+    //         newFolder: name
+    //     })
+    // }
 
     renderNavRoutes() {
         return (
@@ -97,7 +97,7 @@ class App extends Component {
             newFolder: this.state.newFolder,
             deleteNote: this.handleDeleteNote,
             addFolder: this.handleAddFolder,
-            addFolderName:this.getNewFolderValue
+            // addFolderName:this.getNewFolderValue
 
         };
         return (
