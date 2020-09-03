@@ -7,9 +7,9 @@ class AddFolder extends React.Component {
   
   constructor(props) {
     super(props);
-    this.state =({
+    this.state ={
       name:''
-    })
+    }
   }
 
 
@@ -21,10 +21,10 @@ class AddFolder extends React.Component {
 
   handleClickAddFolder = (name) => {
     //name.preventDefault()
-    let newId = uuidv4()
+    //let newId = uuidv4()
     let newItem = JSON.stringify({
       name: name,
-      id: newId,
+      // id: newId,
     })
 
     fetch(`${config.API_ENDPOINT}/folders`, {
@@ -32,8 +32,8 @@ class AddFolder extends React.Component {
       headers: { "Content-Type": "application/json" },
       body: newItem
     }).then(res => res.json())
-    .then(() => {
-      this.context.addFolder(name)
+    .then((folder) => {
+      this.context.addFolder(folder)
       this.props.history.push(`/`)
     })
     

@@ -44,9 +44,9 @@ class App extends Component {
         });
     };
 
-    handleAddFolder = name => {
+    handleAddFolder = folder => {
         this.setState({
-            folders: [...this.state.folders, name]
+            folders: [...this.state.folders, folder]
         })
     }
 
