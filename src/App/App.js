@@ -8,6 +8,7 @@ import NotePageMain from '../NotePageMain/NotePageMain';
 import ApiContext from '../ApiContext';
 import config from '../config';
 import AddFolder from '../AddFolder'
+import AddNote from '../AddNote'
 import './App.css';
 
 class App extends Component {
@@ -112,6 +113,7 @@ class App extends Component {
                     </header>
                     <main className="App__main">
                     <Route path='/add-folder' component={AddFolder}/>
+                    <Route path='/add-note' component={AddNote}/>
                         {this.renderMainRoutes()}</main>
                 </div>
             </ApiContext.Provider>
