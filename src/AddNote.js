@@ -3,23 +3,12 @@ import ApiContext from './ApiContext'
 import config from './config'
 
 
-/*
-
-let newDate = new Date()
-        
-        console.log(newDate.toISOString()) 
-
-*/
-
-
 class AddNote extends React.Component {
   state = { 
     name:'',
     folderId:'',
     content:'',
     modified:''
-
-
    }
 
   static contextType = ApiContext;
@@ -33,23 +22,40 @@ class AddNote extends React.Component {
 
   handleClickAddNote = (name, description, folder) => {
    let newDate = new Date().toISOString()
-   console.log(newDate)
     let newItem = JSON.stringify({
       name: name,
       folderId: folder,
       content: description,
       modified: newDate
     })
+    let error;
 
+    if(name.length >= 3 && description.length >= 3){
     fetch(`${config.API_ENDPOINT}/notes`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: newItem
-    }).then(res => res.json())
-    .then((note) => {
+    })
+    .then(res => {
+      if (!res.ok){
+        error = { code: res.status };
+      }
+      return res.json();
+    })
+    .then(note => {
+      if (error) {
+        error.message = note.message;
+        return Promise.reject(error);
+      }
       this.context.addNoteToState(note)
       this.props.history.push(`/`)
     })
+    .catch(error => {
+      console.error({error});
+    });
+  } else {
+    alert('Please use at least 3 characters for name and description')
+  }
     
   }
 

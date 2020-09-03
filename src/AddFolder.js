@@ -1,6 +1,7 @@
 import React from 'react'
 import config from './config'
 import ApiContext from './ApiContext'
+import PropTypes from 'prop-types';
 
 class AddFolder extends React.Component {
   
@@ -19,22 +20,36 @@ class AddFolder extends React.Component {
   
 
   handleClickAddFolder = (name) => {
-    //name.preventDefault()
-    //let newId = uuidv4()
     let newItem = JSON.stringify({
       name: name,
-      // id: newId,
     })
+    let error;
 
+    if(name.length >= 3 && typeof name === typeof ''){
     fetch(`${config.API_ENDPOINT}/folders`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: newItem
-    }).then(res => res.json())
-    .then((folder) => {
+    }).then(res => {
+      if (!res.ok){
+        error = { code: res.status };
+      }
+      return res.json();
+    })
+    .then(folder => {
+      if (error) {
+        error.message = folder.message;
+        return Promise.reject(error);
+      }
       this.context.addFolder(folder)
       this.props.history.push(`/`)
     })
+    .catch(error => {
+      console.error({error});
+    });
+  } else {
+    alert('please use more than 3 characters for name')
+  }
     
   }
   getValue = (val) => {
@@ -77,6 +92,22 @@ class AddFolder extends React.Component {
 
 
 }
-//uuidv4()
+
+
+AddFolder.propTypes = {
+  name: PropTypes.string.isRequired
+  // (props => {
+  //   const nameVal = props;
+  //   if(typeof prop != 'string') {
+  //     return new Error(`${nameVal} is required to be a string`);
+  //   } else if(nameVal.length < 3) {
+  //   return new Error(`${nameVal} is required to be more than 3 characters`);
+  // }
+  // }),
+
+
+
+}
+
 
 export default AddFolder
