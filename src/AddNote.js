@@ -24,7 +24,7 @@ class AddNote extends React.Component {
    let newDate = new Date().toISOString()
     let newItem = JSON.stringify({
       name: name,
-      folderId: folder,
+      folderId: folder || document.getElementById('add-folder').value,
       content: description,
       modified: newDate
     })
@@ -88,10 +88,11 @@ class AddNote extends React.Component {
     return (
 
       <form>
-        <label htmlFor="add-folder">Add Folder</label>
+        <label htmlFor="add-folder">Add To Folder</label>
         <select id="add-folder"
         onChange={(e) => this.getFolder(e.target.value)}
-        >{this.generateFolderList()}</select>
+        >{this.generateFolderList()}
+        </select>
         <label htmlFor="note-name">Note Name</label>
         <input 
           id="note-name"
